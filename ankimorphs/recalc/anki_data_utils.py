@@ -212,12 +212,28 @@ def _get_anki_data(
             [f" AND notes.tags LIKE '% {_tag} %'" for _tag in included_tags]
         )
 
+    # CASE explanation: we try to extract a relatively new property called 'stability', which is a float stored in
+    # a json object. Old cards (2016 and earlier) that haven't been studied do not have these json objects--they return
+    # en empty string, which can cause malformed json exceptions.
+    # When we know we have a valid json object we next need to check if the json object is empty, i.e. the card hasn't
+    # been studied. If it is empty, the COALESCE function returns 0.0 instead to make sure we always return a float
     result: list[Sequence[Any]] = mw.col.db.all(
         """
-        SELECT cards.id, cards.ivl, COALESCE(json_extract(cards.data, '$.s'), 0.0), cards.type, cards.queue, notes.id, notes.flds, notes.tags
+        SELECT
+            cards.id,
+            cards.ivl,
+            CASE
+                WHEN cards.data != '' AND json_valid(cards.data)
+                THEN COALESCE(json_extract(cards.data, '$.s'), 0.0)
+                ELSE 0.0
+            END AS stability,
+            cards.type,
+            cards.queue,
+            notes.id,
+            notes.flds,
+            notes.tags
         FROM cards
-        INNER JOIN notes ON
-            cards.nid = notes.id
+        INNER JOIN notes ON cards.nid = notes.id
         """
         + f"WHERE notes.mid = {model_id}{ignore_suspended_cards}{tags_search_string}",
     )
