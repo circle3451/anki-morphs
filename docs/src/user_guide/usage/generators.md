@@ -121,7 +121,7 @@ where these are all the morphs:
 
 If your target is `90%`, then we get:
 
-$$$ \large \text{Occurrence Sum Threshold} = 0.9 \times 400 = 360 $$$
+\\[ \large \text{Occurrence Sum Threshold} = 0.9 \times 400 = 360 \\]
 
 The morphs in the fifth and sixth rows would therefore not be included since they have an occurrence sum greater than 360.
 

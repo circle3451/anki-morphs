@@ -13,7 +13,7 @@
 ## Known Morphs
 
 * **Morphs are considered known when [...]**:  
-  This is variable is used when text is [highlighted](../../setup/settings/extra-fields.md#using-am-highlighted), and it
+  This variable is used when text is [highlighted](../../setup/settings/extra-fields.md#using-am-highlighted), and it
   determines the [L and I numbers](../../installation/changes-to-anki.md#toolbar).
 
 * **Use FSRS card stability instead of card interval for known threshold**:  

@@ -12,19 +12,17 @@ curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
 install mdbook:
 ``` bash
-cargo install mdbook --version 0.4.52
-```
-
-To display latex equations and environments install [mdbook-katex](https://github.com/lzanini/mdbook-katex) with the command:
-
-``` bash
-cargo install mdbook-katex
+cargo install mdbook
 ```
 
 Launch mdbook from the AnkiMorphs directory with the command:
 ``` bash
 mdbook serve docs/ --open
 ```
+
+### MathJax
+
+[MathJax](https://rust-lang.github.io/mdBook/format/mathjax.html?highlight=math#mathjax-support) is used to display the latex equations.
 
 ## Github Pages
 
