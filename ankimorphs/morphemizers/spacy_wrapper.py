@@ -309,7 +309,7 @@ def get_nlp(spacy_model_name: str):  # type: ignore[no-untyped-def] # pylint:dis
     # of the line to make sure that they do not cause problems for
     # any other pipes that might not be able to handle our doc changes.
     ################################################################
-    @_SpacyLanguage.component("lemma_stripper_korean")  # type: ignore[misc]
+    @_SpacyLanguage.component("lemma_stripper_korean")  # type: ignore[untyped-decorator]
     def lemma_stripper_korean(doc: _SpacyDoc) -> _SpacyDoc:
         # The korean lemmatizer produces lemmas in this format:
         #  누르+어
@@ -321,7 +321,7 @@ def get_nlp(spacy_model_name: str):  # type: ignore[no-untyped-def] # pylint:dis
                 w.lemma_ = w.lemma_[:conjugation_position]
         return doc
 
-    @_SpacyLanguage.component("lemma_adder_chinese")  # type: ignore[misc]
+    @_SpacyLanguage.component("lemma_adder_chinese")  # type: ignore[untyped-decorator]
     def lemma_adder_chinese(doc: _SpacyDoc) -> _SpacyDoc:
         # The chinese models don't produce lemmas, so we just set them to be the text
         for w in doc:

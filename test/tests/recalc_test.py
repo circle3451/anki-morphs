@@ -54,7 +54,6 @@ from anki.models import (  # isort:skip pylint:disable=wrong-import-order
 )
 from anki.notes import Note  # isort:skip  pylint:disable=wrong-import-order
 
-
 test_cases_with_success = [
     ################################################################
     #             CASE: SAME INFLECTION AND LEMMA SCORES

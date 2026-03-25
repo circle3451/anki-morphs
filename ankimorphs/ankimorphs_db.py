@@ -66,8 +66,7 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
 
     def create_cards_table(self) -> None:
         with self.con:
-            self.con.execute(
-                """
+            self.con.execute("""
                     CREATE TABLE IF NOT EXISTS Cards
                     (
                         card_id INTEGER PRIMARY KEY ASC,
@@ -76,13 +75,11 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                         card_type INTEGER,
                         tags TEXT
                     )
-                    """
-            )
+                    """)
 
     def create_card_morph_map_table(self) -> None:
         with self.con:
-            self.con.execute(
-                """
+            self.con.execute("""
                     CREATE TABLE IF NOT EXISTS Card_Morph_Map
                     (
                         card_id INTEGER,
@@ -92,13 +89,11 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                         FOREIGN KEY(morph_lemma, morph_inflection) REFERENCES morph(lemma, inflection)
                         PRIMARY KEY(card_id, morph_lemma, morph_inflection)
                     )
-                    """
-            )
+                    """)
 
     def create_morph_table(self) -> None:
         with self.con:
-            self.con.execute(
-                """
+            self.con.execute("""
                     CREATE TABLE IF NOT EXISTS Morphs
                     (
                         lemma TEXT,
@@ -107,21 +102,18 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                         highest_inflection_learning_interval INTEGER,
                         PRIMARY KEY (lemma, inflection)
                     )
-                    """
-            )
+                    """)
 
     def create_seen_morph_table(self) -> None:
         with self.con:
-            self.con.execute(
-                """
+            self.con.execute("""
                     CREATE TABLE IF NOT EXISTS Seen_Morphs
                     (
                         lemma TEXT,
                         inflection TEXT,
                         PRIMARY KEY (lemma, inflection)
                     )
-                    """
-            )
+                    """)
 
     def insert_many_into_card_table(
         self, card_list: list[dict[str, int | str | bool]]
@@ -207,12 +199,10 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
             select_statement = "SELECT lemma, lemma"
 
         with self.con:
-            card_morphs_raw = self.con.execute(
-                f"""
+            card_morphs_raw = self.con.execute(f"""
                     {select_statement}
                     FROM Seen_Morphs
-                    """
-            ).fetchall()
+                    """).fetchall()
 
             for row in card_morphs_raw:
                 card_morphs.add(row[0] + row[1])
@@ -271,8 +261,7 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                     FROM Card_Morph_Map
                     INNER JOIN Morphs ON
                         Card_Morph_Map.morph_lemma = Morphs.lemma AND Card_Morph_Map.morph_inflection = Morphs.inflection
-                    """
-                + where_query_string,
+                    """ + where_query_string,
                 (card_id,),
             ).fetchall()
 
@@ -293,8 +282,7 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                     FROM Card_Morph_Map
                     INNER JOIN Morphs ON
                         Card_Morph_Map.morph_lemma = Morphs.lemma
-                    """
-                + where_query_string,
+                    """ + where_query_string,
                 (card_id,),
             ).fetchall()
 
@@ -335,8 +323,7 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
                 """
                 SELECT DISTINCT card_id
                 FROM Card_Morph_Map
-                """
-                + where_query_string,
+                """ + where_query_string,
             ).fetchall()
 
             for card_id_raw in raw_card_ids:
@@ -649,14 +636,11 @@ class AnkiMorphsDB:  # pylint:disable=too-many-public-methods
         with am_db.con:
             # don't insert any morphs if no cards have been studied
             if where_query_string != "":
-                am_db.con.execute(
-                    """
+                am_db.con.execute("""
                         INSERT OR IGNORE INTO Seen_Morphs (lemma, inflection)
                         SELECT morph_lemma, morph_inflection
                         FROM Card_Morph_Map
-                        """
-                    + where_query_string
-                )
+                        """ + where_query_string)
         am_db.con.close()
 
         am_db.insert_names_to_seen_morphs()
