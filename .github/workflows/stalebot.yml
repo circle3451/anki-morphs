@@ -16,7 +16,7 @@ jobs:
       issues: write
       pull-requests: write
     steps:
-      - uses: actions/stale@v9
+      - uses: actions/stale@b5d41d4e1d5dceea10e7104786b73624c18a190f
         with:
           operations-per-run: 50
           stale-issue-message: 'This issue is stale because no answers have been provided in the last 14 days. If there are still no answers within 7 days then the issue will be closed.'
