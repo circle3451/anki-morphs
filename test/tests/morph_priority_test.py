@@ -68,6 +68,7 @@ def test_morph_priority_with_priority_file(  # pylint:disable=unused-argument
     if fake_environment_fixture is None:
         pytest.xfail()
 
+    assert fake_environment_fixture is not None
     morph_priorities = morph_priority_utils._load_morph_priorities_from_file(
         priority_file_name=csv_file_name, only_lemma_priorities=only_lemma_priorities
     )

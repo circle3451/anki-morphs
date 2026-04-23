@@ -89,6 +89,13 @@ repos:
     hooks:
       - id: zizmor
         files: '.github/workflows/.*\.yml$'
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.20.2
+    hooks:
+      - id: mypy
+        args: [ --no-incremental ]
+        files: ^(ankimorphs|test)/
+        pass_filenames: true
   - repo: local
     hooks:
       - id: pylint
@@ -101,12 +108,6 @@ repos:
       - id: black
         name: black
         entry: black
-        language: system
-        types: [ python ]
-        files: 'ankimorphs/|^test/'
-      - id: mypy
-        name: mypy
-        entry: mypy
         language: system
         types: [ python ]
         files: 'ankimorphs/|^test/'

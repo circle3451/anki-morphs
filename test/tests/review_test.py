@@ -46,7 +46,7 @@ def mocked_reviewer_and_db(
     mock_mw.reviewer._shortcutKeys = partial(
         reviewing_utils.am_reviewer_shortcut_keys,
         self=mock_mw.reviewer,
-        _old=Reviewer._shortcutKeys,  # type: ignore[arg-type]
+        _old=Reviewer._shortcutKeys,
     )
 
     return mock_mw, mock_db

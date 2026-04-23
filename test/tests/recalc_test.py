@@ -277,6 +277,7 @@ def test_recalc(  # pylint:disable=too-many-locals
     if fake_environment_fixture is None:
         pytest.xfail()
 
+    assert fake_environment_fixture is not None
     text_preprocessing.update_translation_table()  # updates custom characters to ignore
 
     initial_collection = fake_environment_fixture.mock_mw.col

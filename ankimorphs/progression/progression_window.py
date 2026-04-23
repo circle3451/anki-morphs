@@ -217,7 +217,7 @@ class ProgressionWindow(QMainWindow):  # pylint:disable=too-many-instance-attrib
         )
 
     def _is_lemma_priority_selected(self) -> bool:
-        return self.ui.lemmaRadioButton.isChecked()
+        return self.ui.lemmaRadioButton.isChecked()  # type: ignore[no-any-return]
 
     def _background_process_and_populate_tables(self) -> None:
         assert mw is not None
