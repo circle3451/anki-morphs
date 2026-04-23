@@ -19,3 +19,12 @@ updates:
       - dependency-name: "PyQt6-WebEngine"
       - dependency-name: "PyQt6-WebEngine-Qt6"
       - dependency-name: "PyQt6_sip"
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    groups:
+      all-actions:
+        patterns:
+          - "*"
