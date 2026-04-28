@@ -34,8 +34,12 @@ To overcome this problem and speed up the learning process, we can use the optio
 
 ## On Recalc
 * **Suspend new cards:**:  
+  > **Note:** AnkiMorphs never unsuspends cards. As a result, these cards are never error-corrected, which can lead to
+  > overestimating known morphs and reduce practice efficiency. Consider using the 
+  > `Move new cards to the end of the due queue` option instead.
+  
   This option suspends certain new cards, which can prevent having to skip the same
-  cards at the start of every session. These cards are are given the [suspended automatically tag](tags.md).
+  cards at the start of every session. These cards are given the [suspended automatically tag](tags.md).
 
     * **If all morphs are known**:  
       Suspends new cards that have no **unknown** morphs, except if they include[ **fresh** morphs](../../glossary.md#fresh-morphs).
