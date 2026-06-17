@@ -101,8 +101,10 @@ A morph is classified as **known** if it is on a review card with a learning int
 [known morph interval setting](setup/settings/general.md), or if it is stored in the [known morphs folder](setup/setting-known-morphs.md).
 
 ## Fresh Morphs
-A morph is classified as **fresh** if it only appears on review cards with a learning interval less than the
-[known morph interval setting](setup/settings/general.md). These morphs are in the learning state.
+Fresh morphs are morphs that appear only on cards whose learning intervals are below the [**Known Morphs Interval** threshold](setup/settings/general.md). Once a morph appears on a card whose interval meets or exceeds that threshold, it is no longer considered fresh.
+* **New cards** have a learning interval of **0 days**.
+* **Learning cards** have a learning interval of **1 day**.
+* **Review cards** have learning intervals that vary based on scheduling and review history.
 
 
 ## Profile folder
